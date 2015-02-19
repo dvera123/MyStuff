@@ -2,9 +2,6 @@
 
 module.exports = function (grunt) {
 
-	// Time how long tasks take to execute
-    require('time-grunt')(grunt);
-
     // load all grunt tasks automatically
     require('load-grunt-tasks')(grunt);
 
@@ -27,6 +24,18 @@ module.exports = function (grunt) {
                 }
             }
         },
+
+         watch: {
+            options: {
+                livereload: true,
+                spawn: false
+            },
+            assemble: {
+                files: ['app/**/*.{hbs,json}'],
+                tasks: ['assemble:server']
+            }
+        },
+
         connect: {
             options: {
                 port: 3000,
@@ -35,7 +44,7 @@ module.exports = function (grunt) {
             },
             livereload: {
                 options: {
-                    open: true,
+                    open: false,
                     base: [
                         '.tmp',
                         'app'
@@ -48,8 +57,9 @@ module.exports = function (grunt) {
 
     grunt.registerTask('server', function (target) {
         grunt.task.run([
-    	'assemble:server',
-    	'connect:livereload:keepalive'
+    		'assemble:server',
+    		'connect:livereload',
+    		'watch'
         ]);
     });
 
