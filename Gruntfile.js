@@ -42,9 +42,10 @@ module.exports = function (grunt) {
                 livereload: 35729,
                 hostname: 'localhost'
             },
+
             livereload: {
                 options: {
-                    open: false,
+                    open: true,
                     base: [
                         '.tmp',
                         'app'
